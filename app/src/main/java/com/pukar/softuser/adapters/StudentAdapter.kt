@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pukar.softuser.R
 import com.pukar.softuser.model.Students
 
-class StudentAdapter(val lstStudents: ArrayList<Students>, val context:Context):RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
+class StudentAdapter(val lstStudent: ArrayList<Students>, val context:Context):RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
     class StudentViewHolder(view:View):RecyclerView.ViewHolder(view){
         val tvName : TextView= view.findViewById(R.id.tvName)
         val tvAge : TextView= view.findViewById(R.id.tvAge)
@@ -27,7 +27,7 @@ class StudentAdapter(val lstStudents: ArrayList<Students>, val context:Context):
     }
 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
-       val student = lstStudents[position]
+       val student = lstStudent[position]
        holder.tvName.text = student.fullName
        holder.tvAddress.text = student.address
        holder.tvAge.text = student.age.toString()
@@ -42,12 +42,12 @@ class StudentAdapter(val lstStudents: ArrayList<Students>, val context:Context):
             Toast.makeText(context, "Hello this is ${student.fullName}", Toast.LENGTH_SHORT).show()
         }
         holder.imgDelete.setOnClickListener{
-            lstStudents.removeAt(position)
+            lstStudent.removeAt(position)
             notifyDataSetChanged()
         }
     }
 
     override fun getItemCount(): Int {
-       return lstStudents.size
+       return lstStudent.size
     }
 }
