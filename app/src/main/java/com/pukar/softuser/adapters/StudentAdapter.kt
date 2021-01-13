@@ -35,9 +35,11 @@ class StudentAdapter(val lstStudent: ArrayList<Students>, val context:Context):R
         if (student.gender == "Male"){
             holder.imgProfilePic.setImageResource(R.drawable.male_pp)
         }
-        else{
+        else if (student.gender == "Female"){
             holder.imgProfilePic.setImageResource(R.drawable.female_pp)
         }
+        else
+            holder.imgProfilePic.setImageResource(R.drawable.noimage)
         holder.imgProfilePic.setOnClickListener{
             Toast.makeText(context, "Hello this is ${student.fullName}", Toast.LENGTH_SHORT).show()
         }

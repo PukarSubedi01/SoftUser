@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
 
             if(isInputFieldValid()){
                 if (loginValidation()){
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, BottomNavActivity::class.java)
                     startActivity(intent)
                     finish()
                 }

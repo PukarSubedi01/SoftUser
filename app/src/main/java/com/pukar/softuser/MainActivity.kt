@@ -18,10 +18,10 @@ import com.pukar.softuser.fragments.HomeFragment
 import com.pukar.softuser.model.Students
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var lstTitle : ArrayList<String>
+    private lateinit var lstTitle: ArrayList<String>
     private lateinit var lstFragments: ArrayList<Fragment>
     private lateinit var viewPager: ViewPager2
-    private lateinit var tabLayout : TabLayout
+    private lateinit var tabLayout: TabLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,25 +29,31 @@ class MainActivity : AppCompatActivity() {
         tabLayout = findViewById(R.id.tabLayout)
         addToList()
         student.addStudent()
-        val adapter = ViewPageAdapter(lstFragments,supportFragmentManager,lifecycle)
-        viewPager.adapter = adapter
-        TabLayoutMediator(tabLayout,viewPager){tab, position ->
-            tab.text = lstTitle[position]
-        }.attach()
-       var pageChangerCallBack = object : ViewPager2.OnPageChangeCallback(){
-           override fun onPageSelected(position: Int) {
-             //  Toast.makeText(this@MainActivity, position.toString(), Toast.LENGTH_SHORT).show()
-           when(position){
-               0 -> {
+        loadData()
 
-               }
-           }
-           }
-       }
+        var pageChangerCallBack = object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                //  Toast.makeText(this@MainActivity, position.toString(), Toast.LENGTH_SHORT).show()
+                when (position) {
+                    1 -> {
+                        loadData()
+                    }
+                }
+            }
+        }
         viewPager.registerOnPageChangeCallback(pageChangerCallBack)
 
     }
-    private fun addToList(){
+
+    private fun loadData() {
+        val adapter = ViewPageAdapter(lstFragments, supportFragmentManager, lifecycle)
+        viewPager.adapter = adapter
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = lstTitle[position]
+        }.attach()
+    }
+
+    private fun addToList() {
         lstTitle = ArrayList()
         lstFragments = ArrayList<Fragment>()
         lstTitle.add("Home")
